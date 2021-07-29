@@ -55,18 +55,18 @@ let welcomeMouseOver = () => {
             }
             banner.style.height = "0";
             welcome.style.height = "464px";
-            welcomeBackground.style.zIndex = "0";
             for (let i = 0; i < bannerText.length; i++) {
                 bannerText[i].style.pointerEvents = "none";
             }
             setTimeout(() => {
                 for (let i = 0; i < welcomeLinkLogo.length; i++) {
-                    welcomeLinkLogo[i].style.transform = `translateX(${-100 + (welcomeLinkText[i].offsetWidth / 2)}px)`
+                    welcomeLinkLogo[i].style.transform = `translateX(${-100 + (welcomeLinkText[i].offsetWidth / 2)}px)`;
                 }
                 setTimeout(() => {
                     for (let i = 0; i < welcomeLinkText.length; i++) {
                         welcomeLinkText[i].style.opacity = "1";
                     }
+                    welcomeBackground.style.zIndex = "0";
                 }, 300);
             }, 600);
         }, 600);
@@ -79,12 +79,15 @@ let welcomeMouseOver = () => {
             for (let i = 0; i < welcomeLinkText.length; i++) {
                 welcomeLinkText[i].style.opacity = "1";
             }
+            welcomeBackground.style.zIndex = "0";
         }, 300);
     }
     else if (welcomeLinkText[0].style.opacity != "1") {
+        console.log("C");
         for (let i = 0; i < welcomeLinkText.length; i++) {
             welcomeLinkText[i].style.opacity = "1";
         }
+        welcomeBackground.style.zIndex = "0";
     }
 }
 let welcomeMouseOut = () => {
@@ -95,6 +98,7 @@ let welcomeMouseOut = () => {
     for (let i = 0; i < welcomeLinkText.length; i++) {
         welcomeLinkText[i].style.opacity = "";
     }
+    welcomeBackground.style.zIndex = "";
     if (welcomeLinkLogo[0].style.transform != `translateX(${welcomeLinkText[0].offsetWidth / 2}px)`) {
         setTimeout(() => {
             for (let i = 0; i < welcomeLinkLogo.length; i++) {
@@ -109,7 +113,6 @@ let welcomeMouseOut = () => {
                 for (let i = 0; i < bannerText.length; i++) {
                     bannerText[i].style.pointerEvents = "";
                 }
-                welcomeBackground.style.zIndex = "";
                 setTimeout(() => {
                     welcome.style.backgroundColor = "";
                     for (let i = 0; i < welcomeText.length; i++) {
@@ -129,7 +132,6 @@ let welcomeMouseOut = () => {
         for (let i = 0; i < bannerText.length; i++) {
             bannerText[i].style.pointerEvents = "";
         }
-        welcomeBackground.style.zIndex = "";
         setTimeout(() => {
             welcome.style.backgroundColor = "";
             for (let i = 0; i < welcomeText.length; i++) {
