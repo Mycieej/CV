@@ -34,11 +34,9 @@ let welcomeLinkText = document.querySelectorAll(".welcome__link-text");
 let banner = document.querySelector("#banner");
 let bannerText = document.querySelectorAll("#banner h1, #banner h2");
 let welcomeBackground = document.querySelector("#welcome__background");
-window.addEventListener('load', () => {
-    for (let i = 0; i < welcomeLinkLogo.length; i++) {
-        welcomeLinkLogo[i].style.transform = `translateX(${welcomeLinkText[i].offsetWidth / 2}px)`
-    }
-});
+for (let i = 0; i < welcomeLinkLogo.length; i++) {
+    welcomeLinkLogo[i].style.transform = `translateX(${welcomeLinkText[i].offsetWidth / 2}px)`
+}
 let bannerControl = 0;
 let welcomeMouseOver = () => {
     let id = window.setTimeout(function() {}, 0);
@@ -151,5 +149,7 @@ let welcomeMouseOut = () => {
         banner.style.opacity = "";
     }
 }
-welcome.addEventListener("mouseover", welcomeMouseOver);
-welcome.addEventListener("mouseleave", welcomeMouseOut);
+window.addEventListener('load', () => {
+    welcome.addEventListener("mouseover", welcomeMouseOver);
+    welcome.addEventListener("mouseleave", welcomeMouseOut);
+});
