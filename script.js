@@ -35,10 +35,10 @@ let banner = document.querySelector("#banner");
 let bannerText = document.querySelectorAll("#banner h1, #banner h2");
 let welcomeBackground = document.querySelector("#welcome__background");
 let bannerControl = 0;
+let timeoutsArray = [];
 let welcomeMouseOver = () => {
-    let id = window.setTimeout(function() {}, 0);
-    while (id--) {
-        window.clearTimeout(id);
+    for (let i = 0; i < timeoutsArray.length; i++) {
+        clearTimeout(timeoutsArray.pop());
     }
     welcome.style.backgroundColor = "transparent";
     for (let i = 0; i < welcomeText.length; i++) {
@@ -46,7 +46,7 @@ let welcomeMouseOver = () => {
     }
     banner.style.opacity = "0";
     if (welcomeLinkLogo[0].style.opacity != "1") {
-        setTimeout(() => {
+        timeoutsArray.push(setTimeout(() => {
             for (let i = 0; i < welcomeLinkLogo.length; i++) {
                 welcomeLinkLogo[i].style.opacity = "1";
             }
@@ -55,29 +55,29 @@ let welcomeMouseOver = () => {
             for (let i = 0; i < bannerText.length; i++) {
                 bannerText[i].style.pointerEvents = "none";
             }
-            setTimeout(() => {
+            timeoutsArray.push(setTimeout(() => {
                 for (let i = 0; i < welcomeLinkLogo.length; i++) {
                     welcomeLinkLogo[i].style.transform = `translateX(${-100 + (welcomeLinkText[i].offsetWidth / 2)}px)`;
                 }
-                setTimeout(() => {
+                timeoutsArray.push(setTimeout(() => {
                     for (let i = 0; i < welcomeLinkText.length; i++) {
                         welcomeLinkText[i].style.opacity = "1";
                     }
                     welcomeBackground.style.zIndex = "0";
-                }, 300);
-            }, 600);
-        }, 600);
+                }, 300));
+            }, 600));
+        }, 600));
     }
     else if (welcomeLinkLogo[0].style.transform != `translateX(${-100 + (welcomeLinkText[0].offsetWidth / 2)}px)`) {
         for (let i = 0; i < welcomeLinkLogo.length; i++) {
             welcomeLinkLogo[i].style.transform = `translateX(${-100 + (welcomeLinkText[i].offsetWidth / 2)}px)`
         }
-        setTimeout(() => {
+        timeoutsArray.push(setTimeout(() => {
             for (let i = 0; i < welcomeLinkText.length; i++) {
                 welcomeLinkText[i].style.opacity = "1";
             }
             welcomeBackground.style.zIndex = "0";
-        }, 300);
+        }, 300));
     }
     else if (welcomeLinkText[0].style.opacity != "1") {
         console.log("C");
@@ -88,20 +88,19 @@ let welcomeMouseOver = () => {
     }
 }
 let welcomeMouseOut = () => {
-    let id = window.setTimeout(function() {}, 0);
-    while (id--) {
-        window.clearTimeout(id);
+    for (let i = 0; i < timeoutsArray.length; i++) {
+        clearTimeout(timeoutsArray.pop());
     }
     for (let i = 0; i < welcomeLinkText.length; i++) {
         welcomeLinkText[i].style.opacity = "";
     }
     welcomeBackground.style.zIndex = "";
     if (welcomeLinkLogo[0].style.transform != `translateX(${welcomeLinkText[0].offsetWidth / 2}px)`) {
-        setTimeout(() => {
+        timeoutsArray.push(setTimeout(() => {
             for (let i = 0; i < welcomeLinkLogo.length; i++) {
                 welcomeLinkLogo[i].style.transform = `translateX(${welcomeLinkText[i].offsetWidth / 2}px)`;
             }
-            setTimeout(() => {
+            timeoutsArray.push(setTimeout(() => {
                 for (let i = 0; i < welcomeLinkLogo.length; i++) {
                     welcomeLinkLogo[i].style.opacity = "";
                 }
@@ -110,15 +109,15 @@ let welcomeMouseOut = () => {
                 for (let i = 0; i < bannerText.length; i++) {
                     bannerText[i].style.pointerEvents = "";
                 }
-                setTimeout(() => {
+                timeoutsArray.push(setTimeout(() => {
                     welcome.style.backgroundColor = "";
                     for (let i = 0; i < welcomeText.length; i++) {
                         welcomeText[i].style.opacity = "";
                     }
                     banner.style.opacity = "";
-                }, 600);
-            }, 600);
-        }, 300);
+                }, 600));
+            }, 600));
+        }, 300));
     }
     else if (welcomeLinkLogo[0].style.opacity != "") {
         for (let i = 0; i < welcomeLinkLogo.length; i++) {
@@ -129,13 +128,13 @@ let welcomeMouseOut = () => {
         for (let i = 0; i < bannerText.length; i++) {
             bannerText[i].style.pointerEvents = "";
         }
-        setTimeout(() => {
+        timeoutsArray.push(setTimeout(() => {
             welcome.style.backgroundColor = "";
             for (let i = 0; i < welcomeText.length; i++) {
                 welcomeText[i].style.opacity = "";
             }
             banner.style.opacity = "";
-        }, 600);
+        }, 600));
     }
     else if (welcome.style.backgroundColor != "") {
         welcome.style.backgroundColor = "";
