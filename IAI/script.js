@@ -25,7 +25,7 @@ let popupVersion = [];
 let popupContent = document.querySelector("#popup__content");
 let maxAmount;
 let data;
-fetch('/xbox.json').then(res => res.json()).then(res => {
+fetch('IAI/xbox.json').then(res => res.json()).then(res => {
     data = res;
     popupVersions = document.createElement("div");
     popupVersions.id = "popup__versions";
@@ -34,7 +34,7 @@ fetch('/xbox.json').then(res => res.json()).then(res => {
     popupVerArrow.classList = "popup__ver-arrow"
     popupVersions.appendChild(popupVerArrow);
     let newElement = document.createElement("img");
-    newElement.src = "img/arrow.png";
+    newElement.src = "IAI/img/arrow.png";
     popupVerArrow.appendChild(newElement);
     for (let x in data.multiversions[0].items) {
         newElement = document.createElement("div");
@@ -70,10 +70,10 @@ fetch('/xbox.json').then(res => res.json()).then(res => {
     newElement.textContent = data.product.name;
     newElement.id = "popup__name";
     popupContent.prepend(newElement);
-    popupAvailIcon.src = "img/checkmark.png";
+    popupAvailIcon.src = "IAI/img/checkmark.png";
     popupStatus.textContent = "Produkt dostępny";
     maxAmount = data.sizes.items.U.amount;
-    popupProduct.src = "img/xboxsilver.png";
+    popupProduct.src = "IAI/img/xboxsilver.png";
     for (let i = 0; i < popupSize.length; i++) {
         popupSize[i].addEventListener("click", () => {
             popupSize[sizeControl - 1].classList.remove("popup__size-active");
@@ -81,7 +81,7 @@ fetch('/xbox.json').then(res => res.json()).then(res => {
             popupPrice.textContent = `${data.sizes.items[Object.keys(data.sizes.items)[i]].price}zł`
             popupStatus.textContent = `${data.sizes.items[Object.keys(data.sizes.items)[i]].status}`;
             if (data.sizes.items[Object.keys(data.sizes.items)[i]].status === "Produkt dostępny") {
-                popupAvailIcon.src = "img/checkmark.png";
+                popupAvailIcon.src = "IAI/img/checkmark.png";
                 if (window.matchMedia("(min-width: 979px)").matches) {
                     popupDelivery.classList.remove("popup--opacity");
                     popupDelivery.style.display = "";
@@ -94,7 +94,7 @@ fetch('/xbox.json').then(res => res.json()).then(res => {
                 maxAmount = data.sizes.items[Object.keys(data.sizes.items)[i]].amount;
             }
             else {
-                popupAvailIcon.src = "img/redcross.png";
+                popupAvailIcon.src = "IAI/img/redcross.png";
                 if (window.matchMedia("(min-width: 979px)").matches) {
                     popupDelivery.classList.add("popup--opacity");
                     popupDelivery.style.display = "";
@@ -156,11 +156,11 @@ let sliderFunc = (direction, versionChange) => {
                 popupProduct.style.opacity = "0";
                 timeout = setTimeout(() => {
                     if (direction === 1) {
-                        popupProduct.src = `img/xbox${xboxColor}3.png`;
+                        popupProduct.src = `IAI/img/xbox${xboxColor}3.png`;
                         productControl = 3;
                     }
                     else {
-                        popupProduct.src = `img/xbox${xboxColor}2.png`;
+                        popupProduct.src = `IAI/img/xbox${xboxColor}2.png`;
                         productControl = 2;
                     }
                 }, 500);
@@ -169,11 +169,11 @@ let sliderFunc = (direction, versionChange) => {
                 popupProduct.style.opacity = "0";
                 timeout = (setTimeout(() => {
                     if (direction === 1) {
-                        popupProduct.src = `img/xbox${xboxColor}.png`;
+                        popupProduct.src = `IAI/img/xbox${xboxColor}.png`;
                         productControl = 1;
                     }
                     else {
-                        popupProduct.src = `img/xbox${xboxColor}3.png`;
+                        popupProduct.src = `IAI/img/xbox${xboxColor}3.png`;
                         productControl = 3;
                     }
                 }, 500));
@@ -182,11 +182,11 @@ let sliderFunc = (direction, versionChange) => {
                 popupProduct.style.opacity = "0";
                 timeout = setTimeout(() => {
                     if (direction === 1) {
-                        popupProduct.src = `img/xbox${xboxColor}2.png`;
+                        popupProduct.src = `IAI/img/xbox${xboxColor}2.png`;
                         productControl = 2;
                     }
                     else {
-                        popupProduct.src = `img/xbox${xboxColor}.png`;
+                        popupProduct.src = `IAI/img/xbox${xboxColor}.png`;
                         productControl = 1;
                     }
                 }, 500);
@@ -200,19 +200,19 @@ let sliderFunc = (direction, versionChange) => {
             case 1:
                 xboxColor = "silver";
                 timeout = setTimeout(() => {
-                    popupProduct.src = "img/xboxsilver.png";
+                    popupProduct.src = "IAI/img/xboxsilver.png";
                 }, 500);
                 break;
             case 2:
                 xboxColor = "black";
                 timeout = setTimeout(() => {
-                    popupProduct.src = "img/xboxblack.png";
+                    popupProduct.src = "IAI/img/xboxblack.png";
                 }, 500);
                 break;
             case 3:
                 xboxColor = "";
                 timeout = setTimeout(() => {
-                    popupProduct.src = "img/xbox.png";
+                    popupProduct.src = "IAI/img/xbox.png";
                 }, 500);
                 break;
         }
